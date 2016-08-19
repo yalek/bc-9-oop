@@ -1,7 +1,10 @@
 class NotesApplication(object):
 
 	def __init__(self, author):
-		self.author = author
+		if type(author) is not str:
+			raise TypeError
+		else:
+			self.author = author
 		self.notes_list = []
 
 	def create(self, note_content):
@@ -15,16 +18,18 @@ class NotesApplication(object):
 			print("By Author " + self.author)
 
 	def get(self, note_id):
-		self.note_id = note_id
-		for notes in self.notes_list:
+		if note_id in range(len(self.notes_list)):
 			return self.notes_list[note_id]
+		else:
+			return "Note number not in list"
 
 	def search(self, search_text):
-		# self.search_text = search_text
 		print("Showing results for search: " + search_text)
 		for note in self.notes_list:
 			if search_text in note:
 				print("Note ID: " + self.notes_list.index(note))
+			else:
+				return "Text not in list"
 
 		print("By Author " + self.author)
 
