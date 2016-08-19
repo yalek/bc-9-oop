@@ -32,5 +32,18 @@ class NotesApplicationTests(unittest.TestCase):
 		a1.create('ann')
 		self.assertEqual('Text not in list', a1.search('tt'), msg = "Search text not in list")
 
+	def test_delete_note(self):
+		a1 = NotesApplication('Yusuf')
+		a1.create('Bread')
+		a1.create('Chips')
+		a1.create('Water')
+		self.assertEqual('invalid note_id', a1.delete(3), msg = "Note Id entered not in list")
+
+	def test_edit_note(self):
+		a1 = NotesApplication('Njoro')
+		a1.create('Visa rules')
+		a1.create('Passport rules')
+		self.assertEqual('invalid note_id', a1.edit(2, 'Hoe to apply'), msg = "Note Id entered not found")
+
 if __name__ == '__main__':
 	unittest.main()
